@@ -12,6 +12,9 @@ using Miningcore.Rpc;
 using Miningcore.Stratum;
 using Miningcore.Time;
 using Newtonsoft.Json.Linq;
+using NLog;
+
+using BitcoinDaemonResponses = Miningcore.Blockchain.Bitcoin.DaemonResponses;
 
 namespace Miningcore.Blockchain.Decred;
 
@@ -155,7 +158,7 @@ public class DecredJobManager : BitcoinJobManager
             return new SubmitResult(false, null);
         }
 
-        var blockResponse = await rpc.ExecuteAsync<DaemonResponses.Block>(logger, BitcoinCommands.GetBlock, ct, new[] { share.BlockHash });
+        var blockResponse = await rpc.ExecuteAsync<BitcoinDaemonResponses.Block>(logger, BitcoinCommands.GetBlock, ct, new[] { share.BlockHash });
         var block = blockResponse.Response;
         var accepted = blockResponse.Error == null && block?.Hash == share.BlockHash;
 
