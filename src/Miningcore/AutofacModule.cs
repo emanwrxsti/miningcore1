@@ -5,6 +5,7 @@ using Miningcore.Banning;
 using Miningcore.Blockchain.Alephium;
 using Miningcore.Blockchain.Beam;
 using Miningcore.Blockchain.Bitcoin;
+using Miningcore.Blockchain.Decred;
 using Miningcore.Blockchain.Conceal;
 using Miningcore.Blockchain.Cryptonote;
 using Miningcore.Blockchain.Equihash;
@@ -189,6 +190,7 @@ public class AutofacModule : Module
         // Bitcoin and family
 
         builder.RegisterType<BitcoinJobManager>();
+        builder.RegisterType<DecredJobManager>();
 
         //////////////////////
         // Conceal

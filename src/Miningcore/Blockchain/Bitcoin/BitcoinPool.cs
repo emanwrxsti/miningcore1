@@ -432,10 +432,15 @@ public class BitcoinPool : PoolBase
         base.Configure(pc, cc);
     }
 
+    protected virtual BitcoinJobManager CreateJobManager()
+    {
+        return ctx.Resolve<BitcoinJobManager>(
+            new TypedParameter(typeof(IExtraNonceProvider), new BitcoinExtraNonceProvider(poolConfig.Id, clusterConfig.InstanceId)));
+    }
+
     protected override async Task SetupJobManager(CancellationToken ct)
     {
-        manager = ctx.Resolve<BitcoinJobManager>(
-            new TypedParameter(typeof(IExtraNonceProvider), new BitcoinExtraNonceProvider(poolConfig.Id, clusterConfig.InstanceId)));
+        manager = CreateJobManager();
 
         manager.Configure(poolConfig, clusterConfig);
 

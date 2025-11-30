@@ -256,7 +256,7 @@ public abstract class BitcoinJobManagerBase<TJob> : JobManagerBase<TJob>
 
     protected record SubmitResult(bool Accepted, string CoinbaseTx);
 
-    protected async Task<SubmitResult> SubmitBlockAsync(Share share, string blockHex, CancellationToken ct)
+    protected virtual async Task<SubmitResult> SubmitBlockAsync(Share share, string blockHex, CancellationToken ct)
     {
         var submitBlockRequest = hasSubmitBlockMethod
             ? new RpcRequest(BitcoinCommands.SubmitBlock, new[] { blockHex })

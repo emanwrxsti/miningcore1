@@ -24,6 +24,9 @@ public enum CoinFamily
 
     [EnumMember(Value = "bitcoin")]
     Bitcoin,
+    
+    [EnumMember(Value = "decred")]
+    Decred,
 
     [EnumMember(Value = "conceal")]
     Conceal,
@@ -168,6 +171,7 @@ public abstract partial class CoinTemplate
         {CoinFamily.Alephium, typeof(AlephiumCoinTemplate)},
         {CoinFamily.Beam, typeof(BeamCoinTemplate)},
         {CoinFamily.Bitcoin, typeof(BitcoinTemplate)},
+        {CoinFamily.Decred, typeof(BitcoinTemplate)},
         {CoinFamily.Conceal, typeof(ConcealCoinTemplate)},
         {CoinFamily.Cryptonote, typeof(CryptonoteCoinTemplate)},
         {CoinFamily.Equihash, typeof(EquihashCoinTemplate)},

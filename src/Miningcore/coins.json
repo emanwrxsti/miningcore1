@@ -796,7 +796,7 @@
         "name": "Decred",
         "canonicalName": "Decred",
         "symbol": "DCR",
-        "family": "bitcoin",
+        "family": "decred",
         "website": "https://decred.org/",
         "github": "https://github.com/decred/dcrd",
         "market": "https://www.coingecko.com/en/coins/decred",
