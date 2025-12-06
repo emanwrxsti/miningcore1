@@ -567,6 +567,10 @@ public abstract class BitcoinJobManagerBase<TJob> : JobManagerBase<TJob>
 
     protected virtual IDestination AddressToDestination(string address, BitcoinAddressType? addressType)
     {
+        // Default to Decred address handling when running a Decred pool and no explicit type was configured
+        if(!addressType.HasValue && poolConfig?.Template?.Family == CoinFamily.Decred)
+            addressType = BitcoinAddressType.Decred;
+
         if(!addressType.HasValue)
             return BitcoinUtils.AddressToDestination(address, network);
 
