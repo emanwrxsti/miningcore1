@@ -68,6 +68,7 @@
          "id": "dcr",
          "enabled": true,
          "coin": "decred",
+         "addressType": "Decred",
          "address": "DsgtH6CdzrKGbhMzeFKTrRfrBCYvM9WaENP",
          "rewardRecipients": [
             {
@@ -75,9 +76,9 @@
                "percentage": 1.0
             }
          ],
-         "blockRefreshInterval": 600,
+         "blockRefreshInterval": 10000,
          "jobRebroadcastTimeout": 0,
-         "clientConnectionTimeout": 1000,
+         "clientConnectionTimeout": 600,
          "banning": {
             "enabled": true,
             "time": 600,
@@ -90,11 +91,12 @@
                "listenAddress": "0.0.0.0",
                "difficulty": 128,
                "varDiff": {
-                  "minDiff": 16,
+                  "minDiff": 4,
                   "maxDiff": null,
                   "targetTime": 15,
-                  "retargetTime": 90,
-                  "variancePercent": 30
+                  "retargetTime": 45,
+                  "variancePercent": 25,
+                  "maxDelta": 65536
                }
             }
          },
@@ -109,24 +111,23 @@
             {
                "host": "127.0.0.1",
                "port": 9110,
-               "user": null,
-               "password": null,
+               "user": "USERNAME",
+               "password": "PASSWORD",
                "category": "wallet",
                "ssl": true
             }
          ],
          "paymentProcessing": {
             "enabled": true,
-            "walletPassword": "PASSWORD",
             "minimumPayment": 0.001,
             "payoutScheme": "SOLO",
             "payoutSchemeConfig": {
                "factor": 0.5
+            },
+            "extra": {
+               "minersPayTxFees": true
             }
-         },
-         "extra": { 
-            "addressType": "Decred"
-        }
+         }
       }
    ]
 }
