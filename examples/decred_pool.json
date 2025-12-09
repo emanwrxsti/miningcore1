@@ -103,14 +103,16 @@
                "host": "127.0.0.1",
                "port": 9109,
                "user": "USERNAME",
-               "password": "PASSWORD"
+               "password": "PASSWORD",
+               "ssl": true
             },
             {
                "host": "127.0.0.1",
                "port": 9110,
                "user": null,
                "password": null,
-               "category": "wallet"
+               "category": "wallet",
+               "ssl": true
             }
          ],
          "paymentProcessing": {

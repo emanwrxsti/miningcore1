@@ -36,13 +36,14 @@ public static class FormatUtil
 
     public static string FormatQuantity(double value)
     {
-        var i = -1;
+        var i = 0;
 
-        do
+        // Scale down by 1000 while we have room in the unit list
+        while(Math.Abs(value) >= 1000 && i < QuantityUnits.Length - 1)
         {
             value /= 1000;
             i++;
-        } while(value > 1000);
+        }
 
         return Math.Round(value, 2) + QuantityUnits[i];
     }
