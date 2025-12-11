@@ -13,6 +13,7 @@ using Miningcore.Stratum;
 using Miningcore.Time;
 using Newtonsoft.Json.Linq;
 using NLog;
+using NBitcoin;
 
 using BitcoinDaemonResponses = Miningcore.Blockchain.Bitcoin.DaemonResponses;
 
