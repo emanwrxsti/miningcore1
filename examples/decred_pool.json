@@ -76,8 +76,8 @@
                "percentage": 1.0
             }
          ],
-         "blockRefreshInterval": 10000,
-         "jobRebroadcastTimeout": 0,
+         "blockRefreshInterval": 500,
+         "jobRebroadcastTimeout": 3,
          "clientConnectionTimeout": 600,
          "banning": {
             "enabled": true,
