@@ -3,7 +3,7 @@ namespace Miningcore.Util;
 public static class FormatUtil
 {
     public static readonly string[] HashrateUnits = { " H/s", " KH/s", " MH/s", " GH/s", " TH/s", " PH/s" , " EH/s" };
-    public static readonly string[] QuantityUnits = { "K", "M", "G", "T", "P", "E" };
+    public static readonly string[] QuantityUnits = { string.Empty, "K", "M", "G", "T", "P", "E" };
     public static readonly string[] CapacityUnits = { " KB", " MB", " GB", " TB", " PB" };
 
     public static string FormatHashrate(double hashrate)
