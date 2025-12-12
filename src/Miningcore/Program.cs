@@ -644,7 +644,7 @@ Console.WriteLine(" ALPH  - 1FuiTd5TU17kSERfbYU2htzZpoAw34CS82wwJ6T35PD24");
 Console.WriteLine(" VTC   - VwWRQApZ9VioxFdWtmQra2aRzZQos6M4vu");
 Console.WriteLine(" SCASH - scash1qfjgejpk9zku6ltw59a7025q46v9seen4zlsqjs");
 Console.WriteLine();
-
+}
 
     private static void ConfigureLogging()
     {
