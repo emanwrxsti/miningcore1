@@ -64,6 +64,10 @@ or
 ```console
 ./build-ubuntu-24.04.sh
 ```
+or
+```console
+./re-compile.sh
+```
 
 ## Building on Windows
 
