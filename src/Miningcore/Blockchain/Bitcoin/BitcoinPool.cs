@@ -83,8 +83,7 @@ public class BitcoinPool : PoolBase
             new object[]
             {
                 new object[] { BitcoinStratumMethods.SetDifficulty, subscriptionId },
-                new object[] { BitcoinStratumMethods.MiningNotify, subscriptionId },
-                new object[] { "mining.set_extranonce", subscriptionId }
+                new object[] { BitcoinStratumMethods.MiningNotify, subscriptionId }
             }
         }
         .Concat(subscriberData)
@@ -182,11 +181,6 @@ public class BitcoinPool : PoolBase
 
                 await connection.NotifyAsync(BitcoinStratumMethods.SetDifficulty, new object[] { context.Difficulty });
             }
-
-            // Send post-auth difficulty + job to ensure proxy miners (MRR) have work after authorization
-            await connection.NotifyAsync(BitcoinStratumMethods.SetDifficulty, new object[] { context.Difficulty });
-            var minerJobParams = CreateWorkerJob(connection, true);
-            await connection.NotifyAsync(BitcoinStratumMethods.MiningNotify, minerJobParams);
         }
 
         else

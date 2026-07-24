@@ -68,8 +68,8 @@ public static class ApiEndpoints
             [FromServices] ClusterConfig clusterConfig,
             [FromServices] IMapper mapper,
             HttpContext httpContext,
-            [FromQuery] int page = 0, 
-            [FromQuery] int pageSize = 15, 
+            [FromQuery] int page = 0,
+            [FromQuery] int pageSize = 15,
             [FromQuery] BlockStatus[] state = null) =>
         {
             var ct = httpContext.RequestAborted;
@@ -330,6 +330,8 @@ public static class ApiEndpoints
             {
                 Pools = await Task.WhenAll(clusterConfig.Pools.Where(x => x.Enabled).Select(async config =>
                 {
+                    try
+                    {
                     var stats = await cf.Run(con => statsRepo.GetLastPoolStatsAsync(con, config.Id, ct));
                     pools.TryGetValue(config.Id, out var pool);
                     var result = config.ToPoolInfo(mapper, stats, pool, clusterConfig.Proxied);
@@ -350,7 +352,7 @@ public static class ApiEndpoints
                             result.PaymentProcessing.PayoutSchemeConfig.BlockFinderPercentage = null;
                     }
 
-                    if (lastBlockTime.HasValue)
+                    if (lastBlockTime.HasValue && pool != null)
                     {
                         var startTime = lastBlockTime.Value;
                         var poolEffort = await cf.Run(con => shareRepo.GetEffortBetweenCreatedAsync(con, config.Id, pool.ShareMultiplier, startTime, clock.Now, ct));
@@ -364,7 +366,13 @@ public static class ApiEndpoints
                     result.TopMiners = minersByHashrate.Select(mapper.Map<MinerPerformanceStats>).ToArray();
 
                     return result;
-                }).ToArray())
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.Error(() => $"Error fetching data for pool {config.Id}: {ex.Message}");
+                        return null;
+                    }
+                }).Where(x => x != null).ToArray())
             };
 
             return response;
